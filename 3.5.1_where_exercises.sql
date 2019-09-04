@@ -25,6 +25,8 @@ select * from employees where last_name like 'e%' or last_name like '%e';
 
 select * from employees where last_name like 'e%' and last_name like '%e';
 
+-- could have also used '%e%' in above statement
+
 select * from employees where birth_date like '%-12-25' and hire_date like '199%';
 
 select * from employees where last_name like '%q%' and last_name not like '%qu%';
