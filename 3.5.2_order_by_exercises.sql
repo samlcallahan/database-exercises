@@ -19,5 +19,5 @@ select * from employees where last_name like '%e%' order by emp_no;
 select * from employees where last_name like '%e%' order by emp_no desc;
 
 select * from employees where birth_date like '%-12-25' and hire_date like '199%' order by
-	hire_date desc,
-	birth_date desc;
+	birth_date,
+    hire_date desc;
