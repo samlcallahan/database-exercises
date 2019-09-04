@@ -4,7 +4,7 @@ select concat(first_name," ",last_name)
 	as full_name
 	from employees
 	where last_name like "%e" 
-	and last_name like "e%";
+	and first_name like "e%";
 	
 select upper(concat(first_name," ",last_name)) 
 	as full_name
