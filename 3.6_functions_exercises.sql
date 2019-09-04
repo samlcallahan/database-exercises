@@ -21,7 +21,8 @@ select first_name, last_name, datediff(now(),hire_date) as tenure from employees
     
 select max(salary), min(salary) from salaries;
 
-select concat(lower(substring(first_name,1,1)),
+select concat(
+	lower(substring(first_name,1,1)),
 	lower(substring(last_name,1,4)),
 	"_",
 	substring(birth_date,6,2),
