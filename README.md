@@ -1,3 +1,3 @@
-# Codeup Data Science Coursework
+# Codeup Data Science Database Exercises
 
-A repository in which I'll put my work and projects for my data science course
+A repository in which I put the database exercises from the Codeup Data Science course.
