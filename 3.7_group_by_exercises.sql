@@ -38,3 +38,17 @@ select concat(
 	
 -- Yes, there are duplicate usernames
 
+select sum(count) from
+	(select concat(
+		lower(substring(first_name,1,1)),
+		lower(substring(last_name,1,4)),
+		"_",
+		substring(birth_date,6,2),
+		substring(birth_date,3,2))
+		as username,
+		count(*) as count
+		from employees
+		group by username) as username_table
+	where count > 1
+
+-- 27403 total duplicates
