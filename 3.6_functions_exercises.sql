@@ -21,11 +21,17 @@ select first_name, last_name, datediff(now(),hire_date) as tenure from employees
     
 select max(salary), min(salary) from salaries;
 
-select concat(
-	lower(substring(first_name,1,1)),
-	lower(substring(last_name,1,4)),
-	"_",
-	substring(birth_date,6,2),
-	substring(birth_date,3,2))
-	as username
-	from employees;
+select count(distinct username) from
+	(select concat(
+		lower(substring(first_name,1,1)),
+		lower(substring(last_name,1,4)),
+		"_",
+		substring(birth_date,6,2),
+		substring(birth_date,3,2))
+		as username,
+		count(*) as count
+		from employees
+		group by username) as username_table
+	where count > 1
+
+-- 13,251 repeated usernames
