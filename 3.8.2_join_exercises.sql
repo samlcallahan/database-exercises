@@ -91,3 +91,41 @@ select e.first_name as first_name,
 	and s.to_date like "9999%"
 	order by salary desc
 	limit 1;
+
+select concat(e.first_name," ",last_name) as employee_name,
+	m.dept_name as department_name,
+	m.mgr_name as manager_name
+	from employees as e
+	join dept_emp as de
+	on e.emp_no=de.emp_no
+	join
+		(select d.dept_no,
+		d.dept_name,
+		concat(e.first_name," ",e.last_name) as mgr_name
+		from employees as e
+		join dept_manager as dm
+		on e.emp_no=dm.emp_no
+		join departments as d
+		on dm.dept_no=d.dept_no
+		where dm.to_date like "9999%")
+		as m
+		on de.dept_no=m.dept_no
+	where de.to_date like "9999%";
+	
+select m.dept_name as department_name,
+	concat(e.first_name," ",e.last_name) as name,
+	m.salary as salary
+	from employees as e
+	join salaries as s
+	on e.emp_no=s.emp_no
+	join
+		(select d.dept_name as dept_name,
+			max(s.salary) as salary
+			from salaries as s
+			join dept_emp as de
+			on s.emp_no=de.emp_no
+			join departments as d
+			on de.dept_no=d.dept_no
+			group by dept_name) as m
+			on m.salary=s.salary
+	where s.to_date like "9999%";
