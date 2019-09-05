@@ -32,6 +32,6 @@ select count(distinct username) from
 		count(*) as count
 		from employees
 		group by username) as username_table
-	where count > 1
+	where count > 1;
 
 -- 13,251 repeated usernames
