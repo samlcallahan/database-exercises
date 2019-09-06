@@ -59,7 +59,7 @@ from (
 	from (
 		select count(*) as count_total
 		from salaries
---		where to_date like "9999%"
+		where to_date like "9999%"
 		) as t,
 		(select count(*) as count_high
 		from salaries
