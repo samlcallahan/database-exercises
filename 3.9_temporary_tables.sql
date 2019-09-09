@@ -58,6 +58,19 @@ create temporary table avg_sal_by_dept as
 	select dept_name,avg(salary) as avg_salary
 	from employees.departments
 	join employees.dept_emp using(dept_no)
-	join employees.salaries using(emp_no)
+	join employees.salaries as s using(emp_no)
+	where s.to_date > now()
 	group by dept_name;
 	
+-- add temp table with just stddev and avg salary on it. do a join with no on clause.
+
+create temporary table avg_and_stddev as
+	select avg(salary) as avg_total,
+	stddev(salary) as stddev
+	from employees.salaries
+	where to_date > now();
+	
+select dept_name, 
+(avg_salary-avg_total)/stddev as z_score
+from avg_sal_by_dept
+join avg_and_stddev;
