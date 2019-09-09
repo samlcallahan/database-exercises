@@ -74,3 +74,22 @@ select dept_name,
 (avg_salary-avg_total)/stddev as z_score
 from avg_sal_by_dept
 join avg_and_stddev;
+
+create temporary table salary_by_tenure as
+	select year(now())-year(hire_date) as tenure,
+	avg(salary) as avg_sal
+	from employees.employees as e
+	join employees.salaries as s
+	using(emp_no)
+	where s.to_date > now()
+	group by tenure;
+
+create temporary table min_tenure as
+	select min(tenure) as min
+	from salary_by_tenure;
+
+select tenure - min as years_with_company,
+(avg_sal-avg_total)/stddev as salary_z_score
+from salary_by_tenure
+join min_tenure
+join avg_and_stddev;
