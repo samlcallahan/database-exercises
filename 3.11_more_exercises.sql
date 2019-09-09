@@ -320,7 +320,7 @@ where amount > 5
 limit 1001 offset 999;
 
 select * from customer
-limit 100 offset 101;
+limit 100 offset 100;
 
 select * from film
 order by length;
