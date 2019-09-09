@@ -317,10 +317,10 @@ limit 20;
 select payment_date, amount
 from payment
 where amount > 5
-limit 1001 offset 1000;
+limit 1001 offset 999;
 
 select * from customer
-limit 100 offset 99;
+limit 100 offset 101;
 
 select * from film
 order by length;
