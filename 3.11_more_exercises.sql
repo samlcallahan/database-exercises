@@ -441,8 +441,6 @@ group by actor_name
 order by total desc
 limit 5;
 
-select * from rental;
-
 select month(payment_date) as month,
 store_id,
 sum(amount) as sales
