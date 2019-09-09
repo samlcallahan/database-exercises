@@ -437,7 +437,7 @@ select concat(last_name,", ",first_name) as actor_name,
 count(*) as total
 from actor
 join film_actor using(actor_id)
-group by actor_name
+group by actor_id
 order by total desc
 limit 5;
 
