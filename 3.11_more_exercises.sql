@@ -98,3 +98,114 @@ where city.Name="Morón";
 select LifeExpectancy from country
 join city on city.CountryCode=country.Code
 where city.Name="Morón";
+use sakila;
+
+select * from actor;
+
+select lower(first_name),
+lower(last_name)
+from actor;
+
+select actor_id, first_name, last_name
+from actor
+where first_name="joe";
+
+select * from actor
+where last_name like "%gen%";
+
+select * from actor
+where last_name like "%li%"
+order by last_name, first_name;
+
+select * from country;
+
+select country_id, country
+from country
+where country
+in ("Afghanistan","Bangladesh","China");
+
+select last_name,
+count(*) as count
+from actor
+group by last_name;
+
+select last_name,
+count(*) as count
+from actor
+group by last_name
+having count > 1;
+
+show create table address;
+
+select first_name,
+last_name,
+address
+from staff
+join address using(address_id);
+
+select staff_id,
+sum(amount)
+from payment
+join staff using(staff_id)
+where payment_date like "2005-08%"
+group by staff_id;
+
+select title, count(*)
+from film_actor
+join film using(film_id)
+group by title;
+
+select count(*)
+from inventory
+join film using(film_id)
+where title="Hunchback Impossible";
+
+select title from film
+join language using(language_id)
+where language.name="English"
+and title like "K%"
+or title like "Q%";
+
+select first_name,last_name
+from actor
+join film_actor using(actor_id)
+join film using(film_id)
+where title="Alone Trip";
+
+select first_name,
+last_name,
+email
+from customer
+join address using(address_id)
+join city using(city_id)
+join country using(country_id)
+where country="Canada";
+
+select distinct title from film
+join film_category using(film_id)
+join category using (category_id)
+where category.name="Family";
+
+select store_id, sum(amount)
+from store
+join staff using(store_id)
+join payment using(staff_id)
+group by store_id;
+
+select store_id, city, country
+from store
+join address using(address_id)
+join city using(city_id)
+join country using (country_id);
+
+select category.name as genre,
+sum(amount) as gross_revenue
+from category
+join film_category using(category_id)
+join film using(film_id)
+join inventory using(film_id)
+join rental using(inventory_id)
+join payment using(rental_id)
+group by genre
+order by gross_revenue desc
+limit 5;
