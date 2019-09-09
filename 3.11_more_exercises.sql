@@ -445,7 +445,8 @@ select month(payment_date) as month,
 store_id,
 sum(amount) as sales
 from payment
-join staff using(staff_id)
+join rental using(rental_id)
+join inventory using(inventory_id)
 where payment_date like "2005%"
 group by month,store_id;
 
